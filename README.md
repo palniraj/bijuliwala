@@ -1,3 +1,30 @@
+How to use
+
+Clone repo
+
+git clone https://github.com/palniraj/bijuliwala
+Install the composer dependencies
+
+composer install
+Save .env.example as .env and put your database credentials
+
+       
+Migrate with in terminal
+
+php artisan migrate
+
+
+And for Open in browser
+
+php artisan serve
+
+
+then open Browser with link
+http://127.0.0.1:8000/
+
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
