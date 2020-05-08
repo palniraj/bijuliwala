@@ -3,9 +3,11 @@ How to use
 Clone repo
 
 git clone https://github.com/palniraj/bijuliwala
+
 Install the composer dependencies
 
 composer install
+
 Save .env.example as .env and put your database credentials
 
        
