@@ -18,14 +18,18 @@
     <div class="container collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto mt-2 mr-5 mt-lg-0">
             <li class="nav-item active mr-3">
-                <a class="nav-link" href="http://127.0.0.1:8000/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/page2">Page2</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/page3">Page3</a>
+                <a class="nav-link" href="/service">Service</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/contactform">Contact</a>
             </li>
 
         </ul>

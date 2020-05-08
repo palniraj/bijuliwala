@@ -15,7 +15,22 @@ use App\Http\Controllers\bijuliwalaController;
 
 Route::get('/', 'bijuliwalaController@home');
 Route::get('/home', 'bijuliwalaController@home');
+
+Route::get('/phonenumberlist', 'bijuliwalaController@PhoneNumberList');
+Route::post('/PhoneNumber', 'bijuliwalaController@PhoneNumberData');
+
 Route::get('/page2', 'bijuliwalaController@page2');
-Route::get('/page3', 'bijuliwalaController@page3');
-Route::get('/contactlist', 'bijuliwalaController@contactList');
-Route::post('/contactform', 'bijuliwalaController@contactForm');
+
+Route::get('/contactform', 'ContactController@contactform');
+Route::get('/contactlist', 'ContactController@contactList');
+Route::post('/contactFormData', 'ContactController@contactFormData');
+
+
+Route::get('/service', 'ServiceController@index');
+Route::get('/service/{id}', 'ServiceController@show');
+Route::get('/service/create', 'ServiceController@create');
+Route::post('/ServiceData', 'ServiceController@store');
+
+Route::get('/service/subservice', 'SubServiceController@index');
+Route::get('/service/subservice/create', 'SubServiceController@create');
+Route::post('/SubServiceData', 'SubServiceController@store');

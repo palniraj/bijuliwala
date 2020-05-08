@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\PhoneNumber;
 
 class bijuliwalaController extends Controller
 {
@@ -14,97 +15,87 @@ class bijuliwalaController extends Controller
     //     $this->middleware('auth')->except('index');
     // }
 
-    public function index(){
 
-        return Contact::all();
+
+    public function phoneNumber(){
+
+        return PhoneNumber::all();
 
     }
 
-    public function contactId($id){
+    public function PhoneId($id){
 
-        if(Contact::where('id', $id)->exists()){
-            $cont = Contact::where('id', $id)->get();
+        if(PhoneNumber::where('id', $id)->exists()){
+            $cont = phoneNumber::where('id', $id)->get();
             return response($cont, 200);
         }else{
             return response()->json([
-                'message'=> "Contact Data Not Found!"
+                'message'=> "Clients Id Data Not Found!"
             ], 400);
         }
 
     }
 
-    public function store(){
+    public function PhoneStore(){
+
         request()->validate([
-            'phone'=> 'required',
-            'name'=> 'required',
-            'address'=> 'required',
-            'message'=> 'required'
+            'phone_number'=> 'required'
         ]);
 
+        $NumberStore = new PhoneNumber();
+        $NumberStore->phone_number= request('phone_number');
+        $NumberStore->save();
 
-           $cont = new Contact();
-           $cont->phone = request('phone');
-           $cont->name = request('name');
-           $cont->address = request('address');
-           $cont->message = request('message');
-           $cont->save();
-
-           return response()->json([
+        return response()->json([
             'message'=>'Message sent',
-            'data'=> $cont
+            'data'=> $NumberStore
         ], 201);
-    }
-
-    public function update($id){
-        request()->validate([
-            'phone'=> 'required',
-            'name'=> 'required',
-            'address'=> 'required',
-            'message'=> 'required'
-        ]);
-
-        if(Contact::where('id', '$id')->exists()){
-
-            $cont = Contact::find('$id');
-            $cont->phone = request('phone');
-            $cont->name = request('name');
-            $cont->address = request('address');
-            $cont->message = request('message');
-            $cont->save();
-
-                 return response()->json([
-                     'message'=> "Update Sucessfull!"
-                 ], 200);
-        }else{
-
-            return response()->json([
-                'message'=> "Contact Id Not Fount!"
-            ], 404);
-
-        }
-
-
 
     }
 
 
+    public function PhoneUpdate($id){
 
-    public function delete($id){
+        // request()->validate([
+        //     'phone_number'=> 'required'
+        // ]);
 
-        if(Contact::where('id', $id)->exists()){
-            $cont = Contact::find($id);
+        // if(PhoneNumber::where('id', '$id')->exists()){
+        // $NumberStore = PhoneNumber::find('$id');
+        // $NumberStore->phone_number= request('phone_number');
+        // $NumberStore->save();
+
+        // return response()->json([
+        //     'message'=>'Message sent',
+        //     'data'=> $NumberStore
+        // ], 200);
+
+        // }else{
+        //     return response()->json([
+        //         'message'=> "Contact Id Not Fount!"
+        //     ], 404);
+        // }
+
+    }
+
+
+    public function PhoneDelete($id){
+
+        if(PhoneNumber::where('id', $id)->exists()){
+            $cont = phoneNumber::find($id);
             $cont->delete();
 
             return response()->json([
-                'message'=> "Contact is Deleted!"
+                'message'=> "Phone Number is Deleted!"
             ], 202);
         }else{
             return response()->json([
-                'message'=>"Contact id Not Found!"
+                'message'=>"Clients id Not Found!"
             ], 404);
 
         }
 
     }
+
 
 }

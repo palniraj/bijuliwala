@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\PhoneNumber;
 use Illuminate\Http\Request;
 
 class bijuliwalaController extends Controller
@@ -12,6 +13,28 @@ class bijuliwalaController extends Controller
         return view('home');
 
     }
+
+    public function PhoneNumberData(){
+
+       request()->validate([
+           'phone_number'=> 'required'
+       ]);
+
+       $NumberStore = new PhoneNumber();
+       $NumberStore->phone_number= request('phone_number');
+       $NumberStore->save();
+
+       return back()->withMessage('Thank you, we will give you service soon');
+
+    }
+
+    public function PhoneNumberList(){
+
+        $phoneLists = PhoneNumber::all();
+        return view('phonelists', compact('phoneLists'));
+    }
+
+
 
     public function page2(){
 
@@ -25,34 +48,5 @@ class bijuliwalaController extends Controller
 
     }
 
-    public function contactForm(){
-
-        request()->validate([
-            'phone'=> 'required',
-            'name'=> 'required',
-            'address'=> 'required',
-            'message'=> 'required'
-        ]);
-
-
-        //    $cont = new Contact();
-        //    $cont->phone = request('phone');
-        //    $cont->name = request('name');
-        //    $cont->address = request('address');
-        //    $cont->message = request('message');
-        //    $cont->save();
-        //    return redirect('/home');
-
-        Contact::create(request()->except('_token'));
-        return back()->withMessage('Thank you, we will give you service soon');
-
-    }
-
-    public function contactList(){
-
-        $contactLists = Contact::all();
-        return view('contactlist', compact('contactLists'));
-
-    }
 
 }
